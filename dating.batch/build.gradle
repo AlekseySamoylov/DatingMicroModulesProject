@@ -1,0 +1,21 @@
+group 'com.alekseysamoylov.dating'
+version '1.0'
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'war'
+
+
+sourceCompatibility = 1.8
+
+compileJava.options.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':dating.root')
+    compile("org.springframework.boot:spring-boot-starter-batch:$springBootVersion")
+}

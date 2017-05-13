@@ -1,0 +1,18 @@
+allprojects {
+    group = 'com.alekseysamoylov.dating'
+
+    ext {
+        springBootVersion = "1.5.3.RELEASE"
+
+        junitVersion = "4.12"
+
+        groovyAllVersion = "2.3.11"
+    }
+
+
+}
+
+subprojects {
+
+}
+
