@@ -7,6 +7,8 @@ allprojects {
         junitVersion = "4.12"
 
         groovyAllVersion = "2.3.11"
+
+        lombokVersion = "1.16.6"
     }
 
 

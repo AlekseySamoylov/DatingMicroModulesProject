@@ -1,3 +1,4 @@
 rootProject.name = 'dating'
 
-include ":dating.root", ":dating.batch"
+include ":dating.root", ":dating.batch", ':dating.test'
+

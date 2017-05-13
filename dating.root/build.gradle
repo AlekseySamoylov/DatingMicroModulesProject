@@ -14,8 +14,13 @@ repositories {
 }
 
 dependencies {
+
+    compile("org.projectlombok:lombok:$lombokVersion")
+
     compile("org.codehaus.groovy:groovy-all:$groovyAllVersion")
+
     compile("junit:junit:$junitVersion")
+
     compile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
     compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
 }
