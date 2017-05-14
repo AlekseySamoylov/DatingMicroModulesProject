@@ -3,9 +3,11 @@ package com.alekseysamoylov.dating.test;
 
 import com.alekseysamoylov.dating.root.model.Customer;
 import com.alekseysamoylov.dating.root.model.Gender;
+import com.alekseysamoylov.dating.root.model.User;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executor;
@@ -46,8 +48,15 @@ public class StreamsTest {
                 new Customer("Pol", true, Gender.MALE),
                 new Customer("Sara", true, Gender.FEMALE));
 
-        List<Customer> activeCustomers = customers.stream().filter(Customer::getActive).collect(Collectors.toList());
+        List<Customer> activeCustomers = customers.parallelStream().filter(Customer::getActive).collect(Collectors.toList());
 
-        Map<Gender, List<Customer>> customerMap = customers.stream().filter(Customer::getActive).collect(Collectors.groupingBy(Customer::getGender));
+        Map<Gender, List<Customer>> customerMap = customers.parallelStream().filter(Customer::getActive).collect(Collectors.groupingBy(Customer::getGender));
+
+        List<Customer> nameFilteredCustomers = customers.parallelStream().filter((customer) -> customer.getNikName().contains("l")).collect(Collectors.toList());
+
+        Comparator<User> userComparator = (first, second) -> first.getId().compareTo(second.getId());
+
+        Comparator<User> easyUserComparator = Comparator.comparing(User::getId);
+
     }
 }
