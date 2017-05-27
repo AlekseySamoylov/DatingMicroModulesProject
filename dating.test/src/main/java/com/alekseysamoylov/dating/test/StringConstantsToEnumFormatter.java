@@ -49,6 +49,7 @@ public class StringConstantsToEnumFormatter {
             String value = twoParts[1];
             enumMap.put(name, value);
 
+
         }
         enumMap.forEach((key, value) -> {
             result += (key + ENUM_HEADER_1 + key + ENUM_HEADER_2);

@@ -1,7 +1,6 @@
 package com.alekseysamoylov.dating.test.stream;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -17,20 +16,13 @@ public class FileRead {
 
         try {
             return fileProcessor.process(new BufferedReader(new FileReader(filePath.toFile())));
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return "";
     }
 
     public static void main(String[] args) throws IOException {
-        process("constants.java", (bufferedReader -> {
-            try {
-                return bufferedReader.readLine();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return "";
-        }));
+        process("constants.java", (BufferedReader::readLine));
     }
 }

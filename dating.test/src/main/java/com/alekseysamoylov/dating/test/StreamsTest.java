@@ -6,12 +6,10 @@ import com.alekseysamoylov.dating.root.model.Gender;
 import com.alekseysamoylov.dating.root.model.User;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -58,5 +56,29 @@ public class StreamsTest {
 
         Comparator<User> easyUserComparator = Comparator.comparing(User::getId);
 
+        List<String> customersFunctionExample = map(customers, (customer -> customer.getNikName() + " completed"));
+
+        List<Customer> doubleComparedList = new ArrayList<>(customers);
+        doubleComparedList.sort(Comparator.comparing(Customer::getActive)
+                .reversed().thenComparing(Customer::getGender)
+                .reversed().thenComparing(Customer::getNikName));
+        System.out.println(doubleComparedList);
+
+        List<Integer> namesCharNumbers1 = customers.stream().map(Customer::getNikName).map(String::length).collect(Collectors.toList());
+        List<Integer> namesCharNumbers2 = customers.stream().map((customer) -> customer.getNikName().length()).collect(Collectors.toList());
+
+        boolean isContainsNonActive = customers.stream().anyMatch((customer -> !customer.getActive()));
+
+        Optional<Customer> activeCustomer = customers
+                .stream().filter(Customer::getActive).findAny();
+        activeCustomer.ifPresent((customer) -> System.out.println(customer.getNikName()));
+    }
+
+    public static <T, R> List<R> map(List<T> list, Function<T, R> f) {
+        List<R> result = new ArrayList<>();
+        for (T s : list) {
+            result.add(f.apply(s));
+        }
+        return result;
     }
 }

@@ -1,6 +1,7 @@
 package com.alekseysamoylov.dating.test.stream;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 
 /**
  * Интерфейс для работы с файлами с помощью лямбда выражений
@@ -8,5 +9,5 @@ import java.io.BufferedReader;
 @FunctionalInterface
 public interface FileProcessor {
 
-    public String process(BufferedReader bufferedReader);
+    public String process(BufferedReader bufferedReader) throws IOException;
 }
